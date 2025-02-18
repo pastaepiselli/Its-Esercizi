@@ -1,0 +1,7 @@
+match variable:
+    case variable_value1:
+            instruction for variable_value1
+    case variable_value2:
+            instruction for variable_value2
+    case _:
+            instruction for default case
