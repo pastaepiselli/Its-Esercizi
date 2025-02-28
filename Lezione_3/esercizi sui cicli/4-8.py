@@ -1,4 +1,4 @@
-cubes: int = []
+cubes: list = []
 
 for n in range(1, 11):
     cube: int = n**3
