@@ -4,7 +4,7 @@ x: int = int(input("Inserire punto x:  "))
 
 y: int = int(input("Inserire punto y: "))
 
-coordinate: tuple[int, int] = (x, y)
+coordinate: tuple[int, int] = (x, y) # utilizzare se conosciamo i dati
 
 match coordinate:
     case 0, 0:

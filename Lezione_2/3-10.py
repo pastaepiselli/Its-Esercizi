@@ -12,12 +12,12 @@ print(rivers)
 del rivers(2)
 print(rivers)
 
-rivers.sorted()
+rivers.sorted() # non modifica la lista orig
 print(rivers)
 
 rivers.reverse()
 print(rivers)
 
-rivers.sort(reverse=True)
+rivers.sort(reverse=True) # vuene modificata la lista 
 print(rivers)
 

@@ -66,7 +66,7 @@ print("Rega ho trovato un tavolo piu grande!")
 # inserisco i nuovi invitati
 
 invitati.insert(0, "Alessandro Popa") 
-invitati.insert(1, "Francesco Totti") 
+invitati.insert(len(invitati) // 2, "Francesco Totti") # per prendere il centro preciso della li
 invitati.append("Papa V")
 
 print(f"{invitati[0]} stiamo a trast a cena stase vieni?")
