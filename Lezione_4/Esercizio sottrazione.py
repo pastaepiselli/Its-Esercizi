@@ -20,3 +20,6 @@ valore_sum, valore_diff = operations(15, 7)
 print(valore_diff)
 print(valore_sum)
 
+def coordi(x: int, y: int):
+    return x, y
+print(type(coordi))
