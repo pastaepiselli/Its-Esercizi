@@ -14,4 +14,4 @@ elif n % 2 != 0:
             prodotto *= i 
     print(prodotto)
 else:
-    print("Errore") 
+    print("Errore")

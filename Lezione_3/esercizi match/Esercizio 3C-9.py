@@ -20,4 +20,4 @@ match coordinate:
     case coordinate if x < 0 and y < 0:
         print(f"Il punto {coordinate} si trova nel terzo quadrante")
     case coordinate if x > 0 and y < 0:
-        print(f"Il punto {coordinate} si trova nel quarto quadrante")
+        print(f"Il punto {coordinate} si trova nel quarto quadrante") 
