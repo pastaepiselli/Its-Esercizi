@@ -57,7 +57,7 @@ def serie(target: str = ""):
 
 
         if str(pi)[:len(target)] == target:
-            print(f"Servono {contatore} termini per raggiungere {pi } ")
+            print(f"Servono {contatore} termini per raggiungere {pi} ")
             
             break
 
@@ -67,4 +67,4 @@ def serie(target: str = ""):
 
         contatore += 1
 
-(serie("3.141"))
+(serie("3.14"))
