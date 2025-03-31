@@ -18,7 +18,7 @@ class User:
         elif self.role == 'user':
             print(f'hello {self.first_name} {self.last_name}')
     
-    def increment_login_attempts(self, login):
+    def increment_login_attempts(self):
 
         self.login_attempts += 1
 
@@ -31,8 +31,12 @@ class User:
 popa = User('Alessando', 'Popa', 'ADmin')
 pier = User('Pier', 'Damien ramillano rabong', 'USER')
 
-pier.describe_user()
-pier.greet_user()
+popa.increment_login_attempts()
+popa.increment_login_attempts()
+popa.increment_login_attempts()
 
-popa.describe_user()
-popa.greet_user()
+print(popa.login_attempts)
+
+popa.reset_login_attempts()
+
+print(popa.login_attempts)

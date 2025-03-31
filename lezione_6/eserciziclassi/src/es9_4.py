@@ -22,17 +22,17 @@ class Restaurant:
 
 
 
-granu = Restaurant('Granu', 'italian')   
+# granu = Restaurant('Granu', 'italian')   
 
-print(granu.number_served)
+# print(granu.number_served)
 
-granu.number_served = 3
-print(granu.number_served)
+# granu.number_served = 3
+# print(granu.number_served)
 
-granu.set_number_served(7)
-print(granu.number_served)
+# granu.set_number_served(7)
+# print(granu.number_served)
 
-granu.increment_number_served(7)
-print(granu.number_served)
+# granu.increment_number_served(7)
+# print(granu.number_served)
 
 
