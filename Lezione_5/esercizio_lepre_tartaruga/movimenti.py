@@ -1,13 +1,14 @@
 import random
+stamina_tart = 100
+stamina_lepre = 100
+
 def movetart(tart_pos):
+    global stamina_tart
 
     #genero numero casuale da 1 a 10
 
     movement = random.randint(1, 10)
     
-    #stamina
-
-    stamina_tart = 100
 
     match movement:
         
@@ -55,9 +56,10 @@ def movetart(tart_pos):
     return tart_pos
 
 def movelepre(lepre_pos):
+    global stamina_lepre
     # qua la shit e molto semplice
     movement = random.randint(1, 10)
-    stamina_lepre = 100
+   
     match movement:
         
         # riposo
@@ -126,14 +128,14 @@ def movelepre(lepre_pos):
     return lepre_pos
 
 def movetart_rain(tart_pos):
+    global stamina_tart
+    
 
     #genero numero casuale da 1 a 10
 
     movement = random.randint(1, 10)
     
-    #stamina
-
-    stamina_tart = 100
+   
 
     match movement:
         
@@ -186,9 +188,10 @@ def movetart_rain(tart_pos):
         return tart_pos - 1
 
 def movelepre_rain(lepre_pos):
+    global stamina_lepre
     # qua la shit e molto semplice
     movement = random.randint(1, 10)
-    stamina_lepre = 100
+    
     match movement:
         
         # riposo
@@ -257,6 +260,8 @@ def movelepre_rain(lepre_pos):
     if lepre_pos - 2 < 0:
 
         return 0
+        
     else:
 
         return lepre_pos - 2
+    

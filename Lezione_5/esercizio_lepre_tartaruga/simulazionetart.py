@@ -29,10 +29,11 @@ def posizioni(track, tart_pos, lepre_pos):
 
         # printo le loro posizioni (popa gay)
         print(*track)
-
+ 
         # e poi resetto sempre pk senno si salvanoooo
         track[tart_pos] = '_'
         track[lepre_pos] = '_'
+        
 
 
 
@@ -40,7 +41,7 @@ meteo = 'soleggiato'
 
 print('BANG THEY ARE OFF!!!')
 while True:
-     
+    
     print(f'Tempo (in secondi): {tick}')
     print(f"Condizioni meteo {meteo}")
     print(f"Popa e alla posizione {tart_pos}, e il pier lions e alla posizione {lepre_pos}")
@@ -59,31 +60,20 @@ while True:
     
     posizioni(track, tart_pos, lepre_pos)
 
-    if (tick % 20) > 10:
+    if (tick % 20) >= 10:
         meteo = 'pioggia' 
-        tart_pos  = movelepre_rain(tart_pos)
+        tart_pos  = movetart_rain(tart_pos)
         
         lepre_pos  = movelepre_rain(lepre_pos) 
         
     
     else:
         meteo = 'soleggiato'
-        tart_pos = movelepre(tart_pos) 
+        tart_pos = movetart(tart_pos) 
         lepre_pos = movelepre(lepre_pos)   
 
-
-
-
-
-         
-
-
-    
-    
-
-
-    
     time.sleep(0.1)  # vabbe questo contolla la velocita delle iterazioni
+
 
 
             
