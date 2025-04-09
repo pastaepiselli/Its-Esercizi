@@ -1,4 +1,4 @@
-from tartarugagame import *
+from Lezione_5.gioco_tartaruga.tartarugagame import *
 import pygame
 class Turtle:
     def __init__(self):
@@ -17,3 +17,4 @@ class Turtle:
 
     def draw(self):
         pygame.draw.rect(screen, (0, 255, 0), (self.grid_x * BLOCK_WIDTH, self.grid_y * BLOCK_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT))
+
