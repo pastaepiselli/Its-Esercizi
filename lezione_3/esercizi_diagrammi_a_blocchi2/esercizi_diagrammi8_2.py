@@ -10,3 +10,4 @@ if a < b and a > 0 and b > 0 and a % 1 == 0 and b % 1 ==0:
     print(sum)
 else:
     print("Inserire numero valido")
+

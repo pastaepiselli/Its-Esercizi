@@ -9,4 +9,4 @@ def recursiveDigitCounter(n: int):
         return int(1 + recursiveDigitCounter(n // 10))
     
 
-print(recursiveDigitCounter(120))
+print(recursiveDigitCounter(-120))
