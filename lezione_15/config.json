@@ -1,0 +1,32 @@
+{
+    "appName": "RandomApp",
+    "version": "1.0.0",
+    "settings": {
+        "theme": "dark",
+        "language": "en-US",
+        "autoSave": true,
+        "notifications": {
+            "enabled": true,
+            "sound": "ping",
+            "frequency": "daily"
+        }
+    },
+    "features": {
+        "beta": false,
+        "experimental": [
+            "featureA",
+            "featureB"
+        ]
+    },
+    "api": {
+        "baseUrl": "https://api.randomapp.com",
+        "timeout": 5000,
+        "retryAttempts": 3
+    },
+    "logging": {
+        "level": "info",
+        "file": "/var/log/randomapp.log"
+    },
+    "newSetting": "newValue",
+    "AGGIUNTA": "NUOVO"
+}

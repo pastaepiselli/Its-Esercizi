@@ -1,9 +1,9 @@
 class Persona:
     # i dati di persona sono vuoti
-    def __init__(self):
-        self.name = ""
-        self.lastname = ''
-        self.age = 0
+    def __init__(self, name, surname, age):
+        self.name = name
+        self.lastname = surname
+        self.age = age
 
     def display_data(self):
         print(f'Name: {self.name}, LastName: {self.lastname}, age: {self.age}') 
@@ -21,23 +21,20 @@ class Persona:
         else:
             self.age = age
     # non ha nessu input ma ritorna un valore
-    def get_name(self):
+    def get_name(self) -> str:
         return self.name
     
-    def get_lastname(self):
+    def get_lastname(self) -> str:
         return self.lastname
     
 
-    def get_age(self):
+    def get_age(self) -> int:
         return self.age
-ln: Persona = Persona()
+    
+    def speak(self) -> None:
 
+        print(f'Hello my name is {self.get_name()}!')
 
+    def __str__(self) -> str:
+        return f'Ciao mi chiamo {self.get_name()} {self.get_lastname()} ho {self.get_age()} anni!'
 
-ln.display_data()
-ln.set_name("palle culo")
-ln.display_data()
-ln.set_lastname("cutolo")
-ln.display_data()
-ln.set_age(28)
-ln.display_data()
