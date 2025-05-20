@@ -1,4 +1,4 @@
-from cinemacongeteset import MovieCatalog
+from lezione_12.esercizi_classi.cinemacongeteset import MovieCatalog
 
 catalog: MovieCatalog = MovieCatalog()
 
