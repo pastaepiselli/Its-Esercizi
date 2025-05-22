@@ -35,7 +35,7 @@ def remove_prodotto(nome_prodotto: str) -> None:
 
     for elem in shopping_cart:
 
-        if nome_prodotto == elem['Nome']:
+        if nome_prodotto == elem['Name']:
 
             if elem['Quantity'] <= 1:
 
@@ -46,11 +46,11 @@ def remove_prodotto(nome_prodotto: str) -> None:
                 elem['Quantity'] -= 1
 
 
-        return None
+            return None
     
     print('IL prodotto non e presente ne carrello')
 
-def view_products() -> dict:
+def view_products() -> list[dict]:
 
     return shopping_cart
 
@@ -59,18 +59,20 @@ def cart_tot(carrello: list[dict],  discount: int = 0) -> float:
     tot: int =  0
     for elem in carrello:
 
-        while elem['Quantity'] != 0:
-
-            tot += elem['Price']
+        tot = elem['Price'] * elem['Quantity'] 
 
     if discount > 0:
 
-        tot = (tot * discount) / 100
+        tot = tot - (tot * discount) / 100
 
-    tot = 
-    return tot
+    return f'{tot:.t2f}'
 
-        
+p1 = product("Mela", 0.5, 2)
+add_item(p1)
+p2 = product("Banana", 0.3, 3)
+add_item(p2)
+print(view_products())
+print(cart_tot(shopping_cart, discount=10))  # Applica 10% di sconto
 
 
 
