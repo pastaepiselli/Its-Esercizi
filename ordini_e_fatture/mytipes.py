@@ -155,3 +155,16 @@ if __name__ == '__main__':
     except Exception:
 
         print('p')
+
+
+class Aliquota(float):
+
+    def __new__(cls, aliquota: float):
+
+        if 0 < aliquota <= 1:
+
+            return super().__new__(cls, aliquota)
+        
+        else:
+
+            raise ValueError('Inserire  un aliquota valida!')
