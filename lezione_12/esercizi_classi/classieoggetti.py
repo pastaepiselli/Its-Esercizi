@@ -30,7 +30,7 @@ class Persona:
     # senza repr print(oggetto) = <__main__.Persona object at 0x7d81e073a7e0>:
     def __repr__(self):
         return f'Persona {self.cf}'
-        # con questa funzione sostituisco quello con il return che scelgo io
+        # con questa funzione sostituisco quello con il return che scelgo io2
     
 
 alice1: Persona = Persona('Alice', 'AAA')
