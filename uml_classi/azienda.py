@@ -111,11 +111,11 @@ class Dipartimento:
     _telefono: set[Telefono]
     _indirizzo: Indirizzo
 
-    def __init__(self, nome: str, telefono: Telefono):
+    def __init__(self, nome: str, telefono: Telefono, indirizzo: Indirizzo = None):
 
         self.set_nome(nome)
         self.add_telefono(telefono)
-        self._indirizzo = None
+        self._indirizzo = indirizzo
 
     def get_nome(self) -> str:
 
