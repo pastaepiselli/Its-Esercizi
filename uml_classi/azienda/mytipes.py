@@ -7,15 +7,25 @@ class Genere(StrEnum):
     donna = auto()
     uomo = auto()
 
+class CAP(str):
+
+    def __new__(cls, cap: str):
+
+        if re.fullmatch(r'^[0-9]{5}$', cap):
+
+            return super().__new__(cls, cap)
+        raise ValueError(f'{cap}, non e un CAP italiano valido')
+22
 class Indirizzo:
     # l'underscore indica attributi protetti, possono accedere anche le sottoclassi di indirizzo
     _via: str
     _civico: int
 
-    def __init__(self, via: str, civico: int) -> None:
+    def __init__(self, via: str, civico: int, cap: CAP) -> None:
 
         self._via = via
         self._civico = civico
+        self._cap = cap
 
     def via(self):
 
@@ -24,6 +34,13 @@ class Indirizzo:
     def civico(self):
 
         return self._civico
+    
+    def cap(self) -> CAP:
+
+        return self._cap
+    
+    def __repr__(self):
+        return f'Indirizzo(via={self._via} {self._civico} cap= {self._cap})'
     
 
     def __hash__(self):
@@ -36,8 +53,10 @@ class Indirizzo:
 
             return False
         
-        return self._via == other._via and self._civico == other._civico
+        return self._via == other._via and self._civico == other._civico and self._cap == other._cap
     
+
+
 
 
 class StatoOrdine(StrEnum):
@@ -117,7 +136,19 @@ class Telefono(str):
         else:
 
             raise ValueError('Inserire un numero di telefono valido')
+
+
+class RealGEZ(float):
+
+    def __new__(cls, num: int | float):
+
+        if num > 0:
+
+            return super().__new__(cls, num)
         
+        raise ValueError(f'Il numero {num} deve essere un numero maggiore di zero')
+    
+            
 class Email(str):
 
     def __new__(cls, email: str):

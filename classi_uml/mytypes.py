@@ -3,7 +3,7 @@ from typing import Self, Any
 from enum import *
 
 
-# strEnuem ci permette di creare un enumerativo ed usare quei valori come stringhe
+# strEnuem ci per1mette di creare un enumerativo ed usare quei valori come stringhe
 class Genere(StrEnum):
 
     uomo = auto()
