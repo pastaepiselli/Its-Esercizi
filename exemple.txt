@@ -1,1 +1,13 @@
-Palle cutolo
+Specifica della classe Utente
+
+affidabilita(i: DataOra): Popolarita
+
+pre-condizioni:
+
+    ----------------
+
+post-condizioni:
+
+    - L'operazione non modifica il livello estensionale degli oggetti
+    - Il valore del risultato ('result') e definito come segue:
+        -Sia U l'insieme degli oggetti Utente che coinvolgono

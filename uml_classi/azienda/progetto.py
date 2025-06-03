@@ -10,7 +10,7 @@ class Progetto:
         self.set_nome(nome)
         self.set_budget(budget)
 
-    def get_nome(self) -> str:
+    def _nome(self) -> str:
 
         return self._nome
     
@@ -18,13 +18,19 @@ class Progetto:
 
         self._nome = new_nome
     
-    def get_budget(self) -> RealGEZ:
+    def budget(self) -> RealGEZ:
 
         return self._budget
         
     def set_budget(self, new_budget: RealGEZ) -> None:
 
         self._budget = new_budget
+
+    def __str__(self):
+        
+        return f'Progetto {self._nome()}, con budget: {self.budget()}$'
+    
+
 
 
 
