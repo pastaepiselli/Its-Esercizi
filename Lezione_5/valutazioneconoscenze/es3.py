@@ -14,3 +14,4 @@ def even_odd_pattern(numbers: list[int]) -> list[int]:
     
 
     return mylist
+
