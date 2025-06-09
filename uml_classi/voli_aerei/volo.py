@@ -1,20 +1,24 @@
 from mytypes import *
+from compagnia import *
 
 from aeroporto import Aeroporto
 
 class Volo:
 
-    _codice: CodiceVolo # mutabile
+    _codice: CodiceVolo # immutabile
     _durata_min: IntGEZ  # mutabile
-    _aeroportoPartenza: Aeroporto # immutabile
-    _aeroportoArrivo: Aeroporto # immutabile ???
+    _compagnia: Compagnia
+
     
     
 
-    def __init__(self, codice: CodiceVolo, durata_min: IntGEZ, partenza: Aeroporto, arrivo: Aeroporto ) -> None:
+    def __init__(self, codice: CodiceVolo, durata_min: IntGEZ, compagnia: Compagnia) -> None:
         
         self.set_codice(codice)
         self.set_durata_min(durata_min)
+        self._compagnia = compagnia
+        # quando aggiungo un volo con una compagnia a quella compagnia viene legato quel volo (aggiunto nel set dei voli della compagnia)
+        compagnia.add_volo(self)
 
         # controllo che non sia stato inserito lo stesso aeroporto 2 volte
         if partenza.codice() == arrivo.codice():
@@ -30,9 +34,6 @@ class Volo:
 
         return self._codice
     
-    def set_codice(self, codice: str) -> None:
-
-        self._codice = codice
 
     def durata_min(self) -> IntGEZ:
 
@@ -41,14 +42,6 @@ class Volo:
     def set_durata_min(self, durata: IntGEZ) -> None:
 
         self._durata_min = durata
-
-    def aeroportoPartenza(self) -> Aeroporto:
-
-        return self._aeroportoPartenza
-
-    def aeroportoArrivo(self) -> Aeroporto:
-
-        return self._aeroportoArrivo
 
 
 

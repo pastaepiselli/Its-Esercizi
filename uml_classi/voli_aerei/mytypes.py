@@ -69,7 +69,7 @@ class CodiceVolo(str):
 
     def __new__(cls, codice: str | Self) -> Self:
 
-        if re.fullmatch(r'^[A-Z]{1,2}\d{1,4}$', codice):
+        if re.fullmatch(r'^[A-Z]{z2}\d{4}$', codice):
 
             return super().__new__(cls, codice)
         
@@ -88,7 +88,7 @@ class CodiceAeroporto(str):
         raise ValueError(f'Il codice {codice} non e un codice aeroporto valido')
     
 
-class Int1900(int):
+class IntGE1900(int):
 
     def __new__(cls, x: int) -> Self:
 

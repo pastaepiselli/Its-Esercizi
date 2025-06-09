@@ -24,3 +24,5 @@ class Citta:
     def set_n_abitanti(self, abitanti: IntGEZ) -> None:
 
         self._n_abitanti = abitanti
+
+    

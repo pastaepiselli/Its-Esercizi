@@ -1,6 +1,6 @@
 class Nazione:
 
-    _nome: str
+    _nome: str # mutabile noto alla nascita
 
     def __init__(self, nome: str):
         
