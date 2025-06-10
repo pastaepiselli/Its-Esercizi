@@ -15,3 +15,4 @@ def is_valid_ipv4(address: str) -> bool:
 print(is_valid_ipv4("192.168.0.1"))
 print(is_valid_ipv4("255.255.255.255"))
 print(is_valid_ipv4("256.100.10.1"))
+
