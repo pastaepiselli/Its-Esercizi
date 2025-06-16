@@ -19,7 +19,7 @@ print(sum_primary_diagonal(mat1))
 def sum_secondary_diagonal(matrix: list[list]) -> int:
 
     sum: int = 0 
-    i = 2
+    i = len(matrix) - 1
     for elem in matrix:
         sum += elem[i]
         i -= 1
