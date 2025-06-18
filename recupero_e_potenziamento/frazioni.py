@@ -31,6 +31,9 @@ class Frazione:
     def set_denominatore(self, denominatore: int) -> None:
         if denominatore % 1 != 0:
             self._denominatore = 5
+        
+        elif denominatore == 0:
+            self._denominatore = 5
 
         else:
             self._denominatore = denominatore
@@ -79,38 +82,57 @@ def mcd(x: int, y: int) -> int:
 
 # esericizio 8.C
 
-
-
-
-
 def semplifica(lista_frazioni: list[Frazione]) -> list[Frazione]:
+    # creo la lista da ritornare di frazioni semplificate
     fraz_semplificate: list[Frazione] = []
+
+    #itero sulla lista in input
     for fraz in lista_frazioni:
+        # uso mcd su fraz: Frazione, tra il numeratore e il denominatore per vedere se sono gia semplificate
         if mcd(fraz.numeratore(), fraz.denominatore()) == 1:
             fraz_semplificate.append(fraz)
 
         else:
+            # altrimenti le semplifico, per comodita e leggibilita le salvo in delle variabili
             n = fraz.numeratore()
             d = fraz.denominatore()
+
+            # itero finche non mi trovo con i 2 numeri che mi ritornano un mcd == 1
             while mcd(n, d) != 1:
+                # divido sempre per il mcd finche non rimane 1, ogni volta aggiorno n e d 
                 n //= mcd(n, d)
                 d //= mcd(n, d)
 
+            # alla fine li imposto
             fraz.set_numeratore(n)
             fraz.set_denominatore(d)
+
+            # e li aggiungo alla lista
             fraz_semplificate.append(fraz)
 
     return fraz_semplificate
 
+# esercizio 8.D 
 
 
-        
+def fractionCompare(lista_originale: list[Frazione], lista_semplificata: list[Frazione]) -> None:
+    i = 0
+    for fraz in lista_originale:
+        print(f'Valore frazione originale {fraz.value()} --- Valore frazione semplificata {lista_semplificata[i].value()}')
+        i += 1
+
+
+# esecizio 8.E
+
+# la lista la inizializzo nel if __name__ == "__main__":
+
 
 if __name__ == "__main__":
 
+    # definisco la classe frazione
     popa: Frazione = Frazione(20, 5)
 
-
+    # provo le funzioni
     print(popa)
     print(popa.value())
 
@@ -122,21 +144,34 @@ if __name__ == "__main__":
     popa.set_denominatore(9)
 
     print(popa)
-    
+    # esercizio mcd ... ci potrebbe funzionare una frazione ...
     print(mcd(12, 18))
     print(mcd(1, 18))
 
+    #creo le frazioni x la lista ..  popa e la prima frazione
     luca: Frazione = Frazione(6, 4)
     pier: Frazione = Frazione(10, 5)
+    l1: list[Frazione] = [luca, pier, popa]
     
+    # uso la funzione semplifica sulla lista
+    print(semplifica(l1))
 
-    l: list[Frazione] = [luca, pier, popa]
+    # la assegno ad una variabile per usarla nella funzione fractionCompare()
+    l_s1: list[Frazione] = semplifica(l1)
+    fractionCompare(l1, l_s1)
 
-    print(semplifica(l))
 
-    lista_semplificata = semplifica(l)
+    #creo un altra lista di frazioni
+    l2: list[Frazione] = [Frazione(2.5, 0), Frazione(1, 2), Frazione(2, 4), Frazione(3, 5), Frazione(6, 9), Frazione(4, 7),\
+        Frazione(24, 36), Frazione(12, 36), Frazione(40, 60), Frazione(5, 11),  Frazione(10, 45), Frazione(42, 78), Frazione(9, 15),]
 
+    # uso semplifica per creare un'altra lista di frazioni semplificate
+    l_s2: list[Frazione] = semplifica(l2)\
     
+    # uso fraction compare per far capire che sono equivalenti
+    fractionCompare(l2, l_s2)
 
-    
+
+
+        
 
