@@ -1,80 +1,69 @@
-from uml_classi.azienda.mytipes import *
-from citta import *
+from custom_types import Indirizzo
+from citta import Citta
+
 class Dipartimento:
 
-    _nome: str # mutabile
-    _telefono: set[Telefono] # mutabile [1..*] quindi noto alla nascita
-    _indirizzo: Indirizzo # certamente noto alla nascita ma [0..1] quindi rimuovibile
-    _citta: Citta
+    _nome: str # noto alla nascita
+    _telefoni: set[str] # [1..*] (e quindi noto alla nascita)
+    _indirizzo: Indirizzo # mutabile, [0..1], certamente noto alla nascita
+    _citta: Citta # noto alla nascita
 
-    def __init__(self, nome: str, telefono: Telefono, indirizzo: Indirizzo, citta: Citta) -> None:
+    def __init__(self, nome: str, telefono: str, indirizzo: Indirizzo,
+                 citta: Citta) -> None:
+        self.set_nome(nome)
 
-        self._telefono = set()
-
-
-        self.set_nome(nome) 
+        self._telefoni = set()
         self.add_telefono(telefono)
+
         self.set_indirizzo(indirizzo)
-        self.set_citta()
+        self.set_citta(citta)
 
     def nome(self) -> str:
-
         return self._nome
     
-    def set_nome(self, new_name: str) -> None:
+    def set_nome(self, nome: str) -> None:
+        self._nome = nome
 
-        self._nome = new_name
-
-    def citta(self) -> Citta:
-
-        return self._citta
+    def telefoni(self) -> frozenset[str]:
+        return frozenset(self._telefoni)
     
-    def set_citta(self, c: Citta) -> None:
+    def add_telefono(self, telefono: str) -> None:
+        self._telefoni.add(telefono)
 
-        self._citta = c
-
-    def telefono(self) -> frozenset[Telefono]:
-        # in questo caso restituisco una copia non modificabile, e come ottenere una fotografia
-        return frozenset(self._telefono)
-    
-    def add_telefono(self, new_telefono: Telefono) -> None:
-
-        self._telefono.add(new_telefono)
-
-    
-    def remove_telefono(self, t: Telefono) -> None:
-
-        if len(self.telefono()) == 1:
+    def remove_telefono(self, t: str) -> None:
+        if len(self.telefoni()) == 1:
             raise RuntimeError('Il dipartimento deve avere almeno un numero di telefono')
-        
-        elif t not in  self.telefono():
-            raise KeyError(f'Non posso rimuovere il numero di telefono {t}, non e presente nei numeri del dipartimento')
+        elif t not in self.telefoni():
+            raise KeyError(f"Non posso rimuovere il numero di telefono {t} che non appartiene al dipartimento")
+
+        self._telefoni.remove(t)
 
     def indirizzo(self) -> Indirizzo:
-
         return self._indirizzo
     
-    def set_indirizzo(self, new_indirizzo: Indirizzo | None) -> None:
-
-        self._indirizzo = new_indirizzo
+    def set_indirizzo(self, indirizzo: Indirizzo|None) -> None:
+        self._indirizzo = indirizzo
 
     def remove_indirizzo(self) -> None:
-
         self.set_indirizzo(None)
 
-    def __repr__(self):
-        
-        return f'Dipartimento({self.nome(), self.indirizzo(), *self.telefono()})'
-    
-    def __str__(self):
-        
+    def citta(self) -> Citta:
+        return self._citta
+
+    def set_citta(self, c: Citta) -> None:
+        self._citta = c
+
+
+
+    def __repr__(self) -> str:
+        return f'Dipartimento({self._nome}, {self._telefoni}, {self._indirizzo}, {self._citta})'
+
+    def __str__(self) -> str:
         if self.indirizzo():
-             
-            ind_str: str = 'Con sede in ' + str({self.indirizzo})
-
+            ind_str: str = "con sede in " + str(self.indirizzo())
         else:
+            ind_str: str = "senza sede"
 
-            ind_str : str = 'Senza sede'
+        tel_str: str = "[" + ", ".join(self.telefoni()) + "]"
 
-        tell_str: str = '[' + ', '.join(self.telefono()) + ']'
-        return ind_str
+        return f"Dipartimento '{self.nome()}' {ind_str} a {self.citta().nome()} e numeri di telefono: {tel_str}"

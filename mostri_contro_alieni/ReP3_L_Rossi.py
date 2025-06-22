@@ -1,16 +1,5 @@
 import random
 
-# riprendo alcuni tipi di dato 
-class IntGEZ(int):
-
-    def __new__(cls, n: int):
-
-        if n >= 0:
-
-            return super().__new__(cls, n)
-        
-        raise ValueError('Inserire un numero intero positivo')
-
 class Creatura:
 
     _nome: str # attributo privato
@@ -22,9 +11,9 @@ class Creatura:
     def nome(self) -> str:
         return self._nome
 
-    # metodo set del nome con controllo di stringa valida 
+    # metodo set del nome con controllo di stringa valida ... valida = NO STRINGA NUMERI, NO VUOTA, SOLO STRINGA ACCETTATA
     def setNome(self, nome: str) -> None:
-        if not isinstance(nome, str):
+        if not isinstance(nome, str) or nome == '' or nome.isdigit():
             self._nome = 'Creatura generica'
 
         else:
@@ -38,7 +27,7 @@ class Alieno(Creatura):
 
     # attributi privati
     _matricola: int
-    _munizioni: list[IntGEZ]
+    _munizioni: list[int]
 
     def __init__(self, nome: str) -> None:
         # eredito nome da creaturara
@@ -49,7 +38,7 @@ class Alieno(Creatura):
         self._setMunizioni()
 
         # check per nome valido alieno 
-        if nome != "Robot":
+        if nome[:6]!= "Robot-":
             print("Attenzione! Tutti gli Alieni devono avere il nome \"Robot\" seguito dal numero di matricola! Reimpostazione nome Alieno in Corso!")
             self._nome = f"Robot-{self._matricola}"
         elif nome == "Robot":
@@ -59,7 +48,7 @@ class Alieno(Creatura):
     def matricola(self) -> int:
         return self._matricola
 
-    def munizioni(self) -> list[IntGEZ]:
+    def munizioni(self) -> list[int]:
         return self._munizioni
 
     def _setMatricola(self) -> None:
@@ -80,7 +69,7 @@ class Mostro(Creatura):
     # definisco attributi privati
     _urlo_vittoria: str
     _gemito_sconfitta: str
-    _assalto: list[IntGEZ]
+    _assalto: list[int]
 
     def __init__(self, nome: str, urlo_vittoria: str, gemito_sconfitta: str) -> None:
         # eredito il nome ... anche getNome
@@ -98,6 +87,9 @@ class Mostro(Creatura):
 
     def gemito_sconfitta(self) -> str:
         return self._gemito_sconfitta
+
+    def assalto(self) -> list[int]:
+        return self._assalto
     
     def setVittoria(self, urlo_vittoria: str) -> None:
         # controllo se la stringa non sia un concatenazione di numeri, l'altro controllo nn ha molto senso perche se nn e un str da errore ...
@@ -105,7 +97,7 @@ class Mostro(Creatura):
             self._urlo_vittoria = "GRAAAHHH"
 
         else:
-            self.urlo_vittoria = urlo_vittoria
+            self._urlo_vittoria = urlo_vittoria
         
     def setSconfitta(self, gemito_sconfitta: str) -> None:
         # stessa cosa scritta sopra ... 
@@ -134,8 +126,92 @@ class Mostro(Creatura):
 
 
 
+def pariUguali(a: list[int], b: list[int]) -> list[int]:
+    # creo la lista di ritornare 
+    c: list[int] = []
+
+    # inserisco un contatore per ciclare anche sulla seconda lista
+    i: int = 0
+    for elem in a:
+
+        # nel caso i numeri solo pari
+        if elem % 2 == 0 and b[i] % 2 == 0:
+            c.append(1)
+
+        # altrimenti
+        else:
+            c.append(0)
+
+        # aggirno il contatore per iterare anche sull'altra lista 
+        i += 1
         
+    return c
+                
+def combattimento(a: Alieno, m: Mostro) -> Alieno | Mostro | None:
+
+    # controllo che le classi siano valide ??
+
+    if not isinstance(a, Alieno):
+        print('Il combattimento deve avvenire tra un mostro e un alieno!')
+        return None
+
+    if not isinstance(m, Mostro):
+        print('Il combattimento deve avvenire tra un mostro e un alieno!')
+        return None
+
+    # inizio del combattimento
+
+    c = pariUguali(a.munizioni(), m.assalto())
+
+    # la lista ha PIU di 4 elementi 1
+    if c.count(1) > 4:
+        # vince il mostro
+        print(m.urlo_vittoria())
+        print(m.urlo_vittoria())
+        print(m.urlo_vittoria())
+        return m
+    
+    else:
+        # vince l'Alieno
+        print(m.gemito_sconfitta())
+        print(m.gemito_sconfitta())
+        print(m.gemito_sconfitta())
+        return a
+
+
+def proclamaVincitore(c: Creatura) -> None:
+
+    # devo stamapare a schermo un rettangolo
+
+    # altezza
+    h = 5
+
+    # larghezza , aggiugo la lunghezza del nome che devo mettere detro il rettangolo
+    a = len(c.__str__())
+    l = a + 10
+    
+    # itero su altezza e lunghezza
+    for i in range(h):
+        for j in range(l):
+                # condizioni per cui inserisco * a schermo (bordi)
+                if i == 0 or i == (h - 1) or j == 0 or j == (l - 1):
+                    print('*', end='')
+                
+                # appena raggiungo la parte centrale inserisco il nome
+                elif i == 2 and j == 5:
+                    print(c, end='')
+                    # poi gli lascio 5 spazi vuoti con un asterisco finale (con 4 spazi vuoti viene preciso!!)
+                    print('     *', end="")
+
+                    # poi interrompo questa iterazione
+                    break
+                else:
+                    print(' ', end='')
+        # questo print mi serve dopo ogni riga per andare a capo
+        print()
+
 if __name__ == "__main__":
+    
     # creo una creatura 
     popa: Creatura = Creatura('Popa')
     print(popa)
@@ -156,4 +232,34 @@ if __name__ == "__main__":
     print(popaildistruttore.gemito_sconfitta())
 
 
+    # funzione pari uguali
+    print(pariUguali([1, 3, 4, 5, 6, 8, 9], [7, 8, 2 , 5, 6, 8, 9]))
 
+
+    # inizia il combattimento
+    combattimento(popasupremo, popaildistruttore)
+
+    proclamaVincitore(popa)
+
+    # TEST FINALE
+
+    xenomorfo: Alieno = Alieno('Robot')
+
+    archvile: Mostro = Mostro('Archville', 'AAAAAAAALALALAL', 'miaooo...')
+
+
+    print(xenomorfo)
+    print(xenomorfo.munizioni())
+    print(archvile)
+    print(archvile.assalto())
+
+
+    print('Combattimento')
+
+    proclamaVincitore(combattimento(xenomorfo, archvile))
+
+
+    b = Creatura('123')
+    print(b)
+
+    prova_alieno: Alieno = Alieno('Robot-3445')

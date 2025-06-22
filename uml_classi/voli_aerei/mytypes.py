@@ -1,11 +1,7 @@
 from enum import *
 import re
 from typing import Self, Any
-
-class Genere(StrEnum):
-
-    donna = auto()
-    uomo = auto()
+    
 
 class CAP(str):
 
