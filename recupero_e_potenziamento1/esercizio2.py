@@ -47,6 +47,26 @@ while True:
         break
     sequenza_numeri.append(num_seq)
     
+
+print(*sequenza_numeri)
+print(sequenza_numeri.count(num))
+
+for i in range(0, len(sequenza_numeri)):
+    if sequenza_numeri[i] == num:
+        print(i)
+        break
+
+somma: int= 0 
+for elem in sequenza_numeri:
+    if elem == num:
+        continue
+    somma += elem
+
+
+print(somma)
+
+
+
     
     
 

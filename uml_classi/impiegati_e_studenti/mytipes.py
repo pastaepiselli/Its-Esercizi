@@ -1,47 +1,4 @@
 from enum import StrEnum
-from typing import Self, Any
-import re
-
-
-class Genere(StrEnum):
-
-    donna = auto()
-    uomo = auto()
-
-class Ruolo(StrEnum):
-
-    segretario = auto()
-    direttore = auto()
-    progettista = auto()
-
-
-class IntGEZ(int):
-    
-    def __new__(cls, n: int | Self) -> Self:
-
-        if n >= 0:
-            return super().__new__(cls, n)
-
-    raise ValueError('Inserire un numero intero positivo maggiore o uguale a zero')
-
-class RealGEZ(float):
-
-    def __new__(cls, num: int | float) -> Self:
-
-        if num >= 0:
-            return super().__new__(cls, num)
-        
-        raise ValueError(f'Il numero {num} deve essere un numero maggiore o uguale a zero')
-
-class IntGZ(int):
-
-    def __new__(cls, n: int | Self) -> Self:
-
-        if n > 0:
-            return super().__new__(cls, n)
-
-    raise ValueError(f'Il numero {n} deve essere maggiore di zero')
-
 
 class CodiceFiscale(str):
 	# Gli oggetti di questa classe *sono* stringhe
@@ -53,3 +10,41 @@ class CodiceFiscale(str):
 			return super().__new__(cls, cff)
 		
 		raise ValueError(f"La stringa '{cff}' non è un codice fiscale italiano valido!")
+
+class RealGEZ(float):
+	# Tipo di dato specializzato Reale >= 0
+	def __new__(cls, v: float|int|str|bool|Self) -> Self:
+		n: float = float.__new__(cls, v) # prova a convertire v in un float
+
+		if n >= 0:
+			return n
+
+		raise ValueError(f"Il valore {n} è negativo!")
+
+class IntGZ(int):
+
+    def __new__(cls, n: int):
+
+        if n > 0:
+
+            return super().__new__(cls, n)
+        
+        raise ValueError('Inserire un numero intero maggiore di zero')
+
+
+class IntGEZ(int):
+
+    def __new__(cls, n: int):
+
+        if n >= 0:
+
+            return super().__new__(cls, n)
+        
+        raise ValueError('Inserire un numero intero positivo')
+
+class Genere(StrEnum):
+
+    donna = auto()
+    uomo = auto()
+
+

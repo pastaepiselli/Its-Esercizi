@@ -17,7 +17,7 @@ class IntGEZ(int):
 
     def __new__(cls, n: int):
 
-        if n > 0:
+        if n >= 0:
 
             return super().__new__(cls, n)
         

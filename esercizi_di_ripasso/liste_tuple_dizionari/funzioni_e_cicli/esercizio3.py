@@ -15,5 +15,5 @@ for i in range(30, -5, -5):
 
 print('Lista d')
 
-for i in range(5, 50, 10):i
+for i in range(5, 50, 10):
     print(i)

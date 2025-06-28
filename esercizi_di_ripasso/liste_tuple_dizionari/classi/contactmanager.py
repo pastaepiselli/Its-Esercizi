@@ -84,7 +84,7 @@ class ContactManager:
 
                 contact_list.append(contacts)
         if  contact_list == []:
-            raise Exception('Nessun contratto trovato con questo numero di telefono')
+            raise Exception('Nessun contratto trovato con questo numero di telefonop')
         return contact_list
               
 

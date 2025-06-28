@@ -1,6 +1,6 @@
 from mytipes import *
 from datetime import datetime
-from posizione_militare import PosizioneMilitare
+from __future__ import annotations
 
 class Persona:
 
@@ -8,39 +8,28 @@ class Persona:
     _cognome: str # mutabile, noto alla nascita
     _cf: CodiceFiscale # mutabile, noto alla nascita
     _nascita: datetime.date # immutabile, noto alla nascita
-    _maternita: IntGEZ # mutabile, certamente non noto alla nascita [0..1]
+    _maternita: IntGEZ # mutabile, certamente non noto alla nascita, se valorizzato genere = donna
     _genere: Genere # mutabile, noto alla nascita
-    _posizione_militare: PosizioneMilitare # mutabile, non noto alla nascita
 
 
-    def __init__(self, nome: str, cognome: str, cf: CodiceFiscale, nascita: datetime.date, genere: Genere):
+    def __init__(self, nome: str, cognome: str, cf: CodiceFiscale, nascita: datetime.date, maternita: IntGEZ = None, genere: Genere) -> None:
 
-        self.set_nome(nome)
-        self.set_cognome(cognome)
-        self.set_cf(cf)
-        self._nascita = nascita # impostato senza set poiche immutabile
-        self.set_genere(genere)
+        pass
 
-    # NOME 
+    # NOME
 
     def nome(self) -> str:
         return self._nome
-    
-    def set_nome(self, nome: str) -> None:
-        if not nome:
-            raise ValueError('Il nome non puo essere una stringa vuota')
 
+    def set_nome(self, nome: str) -> None:
         self._nome = nome
 
     # COGNOME
 
     def cognome(self) -> str:
-        return self._cognome 
+        return self._cognome
 
     def set_cognome(self, cognome: str) -> None:
-        if not cognome:
-            raise ValueError('Il cognome non puo essere una stringa vuota')
-        
         self._cognome = cognome
 
     # CODICE FISCALE
@@ -49,10 +38,6 @@ class Persona:
         return self._cf
 
     def set_cf(self, cf: CodiceFiscale) -> None:
-
-        if not cf:
-            raise ValueError('Il codice fiscale non puo essere una strina vuota')
-
         self._cf = cf
 
     # NASCITA SOLO GET
@@ -61,17 +46,23 @@ class Persona:
         return self._nascita
 
     # GENERE
-    
+
     def genere(self) -> Genere:
         return self._genere
 
-    def set_genere(self, genere: Genere) -> None:
-        if not genere:
-            raise ValueError('Il genere non puo essere lasciato vuoto')
-
-        self._genere = genere        
-
+    def set_genere(self, genere: Genere) -> None
+        # se una donna cambia sesso tiene le maternita???   
+        if genere == genere.uomo:
+            self._maternita = None
 
 
+    # MATERNITA
 
-        
+    def maternita(self) -> IntGEZ:
+        return self._maternita
+
+    def add_maternita(self) -> None:
+        if self.genere() = genere.donna:
+
+
+    

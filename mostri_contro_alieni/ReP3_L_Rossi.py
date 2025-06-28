@@ -127,25 +127,46 @@ class Mostro(Creatura):
 
 
 def pariUguali(a: list[int], b: list[int]) -> list[int]:
-    # creo la lista di ritornare 
-    c: list[int] = []
+    # # creo la lista di ritornare 
+    # c: list[int] = []
 
-    # inserisco un contatore per ciclare anche sulla seconda lista
-    i: int = 0
-    for elem in a:
+    # # inserisco un contatore per ciclare anche sulla seconda lista
+    # i: int = 0
+    # for elem in a:
 
-        # nel caso i numeri solo pari
-        if elem % 2 == 0 and b[i] % 2 == 0:
-            c.append(1)
+    #     # nel caso i numeri solo pari
+    #     if elem % 2 == 0 and b[i] % 2 == 0:
+    #         c.append(1)
 
-        # altrimenti
-        else:
-            c.append(0)
+    #     # altrimenti
+    #     else:
+    #         c.append(0)
 
-        # aggirno il contatore per iterare anche sull'altra lista 
-        i += 1
+    #     # aggirno il contatore per iterare anche sull'altra lista 
+    #     i += 1
         
-    return c
+    # return c# creo la lista di ritornare 
+    # c: list[int] = []
+
+    # # inserisco un contatore per ciclare anche sulla seconda lista
+    # i: int = 0
+    # for elem in a:
+
+    #     # nel caso i numeri solo pari
+    #     if elem % 2 == 0 and b[i] % 2 == 0:
+    #         c.append(1)
+
+    #     # altrimenti
+    #     else:
+    #         c.append(0)
+
+    #     # aggirno il contatore per iterare anche sull'altra lista 
+    #     i += 1
+        
+    #  soluzioni dioni 
+    return [1 if j % 2 == 0 and k % 2 == 0 else 0 for j,k in zip(a, b)]
+
+    
                 
 def combattimento(a: Alieno, m: Mostro) -> Alieno | Mostro | None:
 
