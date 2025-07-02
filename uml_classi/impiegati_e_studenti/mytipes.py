@@ -1,4 +1,6 @@
-from enum import StrEnum
+from enum import StrEnum, auto
+from typing import Self
+import re
 
 class CodiceFiscale(str):
 	# Gli oggetti di questa classe *sono* stringhe
@@ -47,4 +49,8 @@ class Genere(StrEnum):
     donna = auto()
     uomo = auto()
 
+class Ruolo(StrEnum):
 
+	segretario = auto()
+	direttore = auto()
+	progettista = auto()
