@@ -177,17 +177,25 @@ def make_move(move: int, segno: str):
 
 
 while True:
+    # griglia a schermo
     print_grid(grid)
+    # muove il giocatore 
     player_move(playerX)
+    # controlli per vittoria o pareggio
     if check_win(grid, playerX):
         print("Hai vinto!")
         break
     if check_tie(grid):
         print("Pareggio!")
         break
-
+    
+    # calcolo la migliore mossa 
     move = best_move_IA(grid, playerO)
+    
+    # esegue la mossa 
     make_move(move, playerO)
+
+    # di nuovo controlla se ha vinto     
     if check_win(grid, playerO):
         print_grid(grid)
         print("Hai perso! L'IA ha vinto.")
