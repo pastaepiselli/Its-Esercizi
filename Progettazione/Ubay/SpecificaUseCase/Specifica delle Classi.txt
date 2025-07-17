@@ -1,0 +1,70 @@
+
+
+Specifica classe Utente
+
+
+
+Specifica classe Asta:
+Ogni istanza di questa classe rappresenta un asta
+	[V.Asta.scandenzaDopoPubblicazione] La scadenza dell'asta (istanza della classe Asta nel diagramma UML delle classi) deve essere successiva alla sua pubblicazione.
+		
+		Non esiste a:Asta tale che a.scadenza <= a.pubblicazione. 
+
+		Si può scrivere anche in modo poco più informale:
+			Per ogni istanza a di Asta deve essere vero che a.pubblicazione è minore o uguale a a.scadenza.
+
+
+	prezzo (i:DataOra):Reale >= 0
+		pre-condizioni:
+		
+		post-condizioni:
+			l'operazione non modifica il livello estensionale
+			il valore di result è definito come segue:
+			-	Sia B l'insieme degli oggetti b:Bid  coinvolte in un link di associazione asta_bid insieme a this "(this,b)" tali da avere b.istante non successivo al vlaore di i. 
+
+			Formalmente:
+				Sia B l'insieme delle istanze b:Bid tali che (this,b):asta_bid e b.istante <= i.
+
+			- SIa N il numero di elementi di B (cioe la cardinalità di B, denotata anche come |B|)
+			- Result = N * this.prezzo_bid + this.prezzo
+
+
+
+Specifica della classe Utente:
+	Ogni istanza di questa classe rappresenta un utente
+		popolarità(i:DataOra): Popolarità
+
+		pre-condizioni: 
+		L'oggetto dell'invocazione ("this") deve avere valore dell'attributo "i" non minore all'attributo this.registrazione.
+
+		post-condizioni:
+		l'operazione non modifica il livello estensionale
+		Il valore di result è definito come segue:
+			- Sia P l'insieme dei post pubblicati da this, formalmente:
+				tutti i p:PostOggetto che partecipano a "pubblica" o "priv_ou" insieme a 'this'.
+			- Sia Ucs l'insieme degli u:Privato tali che partecipano a cs_ut insieme agli p in P dove l'istante di cs_ut e compreso tra i - 12 e i. (Post di 'this')
+			- Sia Ua l'insieme degli p:Privato, sia b:Bid tale che (b,u): bid_ut, deve essere che (b,p):asta_bid dove p in P e   i-12 <= b.istante <= i.
+			- result = |Ucs| + |Ua|
+
+
+	affidabilità(i: DataOra):Reale in 0..1
+
+	pre-condizioni:
+		Sia F l'insieme degli oggetti pf:PostconFeedback che partecipano ad un link assoc. (this, PostconFeedback): pubblica o (this, PostconFeedback): priv_ou e che hanno f.istante <= i, l'insieme deve avere almeno un elemento
+
+
+	post-condizioni:
+		- L'operazione non modifica il livello estensionale
+		- Il valore del risultato ("result") è definito come segue:
+			- Sia S la somma dei pf.voto tali che pf in F
+			- Sia FT la cardinalità di PF.
+			- m = S/FT
+			- Sia PFN l'insieme dei pf in F tali che pf.voto <= 2
+			-z = FN/FT
+			-result - m*(1 -z)/5
+
+
+
+
+
+

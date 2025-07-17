@@ -1,0 +1,69 @@
+
+
+Specifica classe Utente
+
+
+
+Specifica classe Asta:
+Ogni istanza di questa classe rappresenta un asta
+	[V.Asta.scandenzaDopoPubblicazione] La scadenza dell'asta (istanza della classe Asta nel diagramma UML delle classi) deve essere successiva alla sua pubblicazione.
+		
+		Non esiste a:Asta tale che a.scadenza <= a.pubblicazione. 
+
+		Si può scrivere anche in modo poco più informale:
+			Per ogni istanza a di Asta deve essere vero che a.pubblicazione è minore o uguale a a.scadenza.
+
+
+	prezzo (i:DataOra):Reale >= 0
+		pre-condizioni:
+		
+		post-condizioni:
+			l'operazione non modifica il livello estensionale
+			il valore di result è definito come segue:
+			-	Sia B l'insieme degli oggetti b:Bid  coinvolte in un link di associazione asta_bid insieme a this "(this,b)" tali da avere b.istante non successivo al vlaore di i. 
+
+			Formalmente:
+				Sia B l'insieme delle istanze b:Bid tali che (this,b):asta_bid e b.istante <= i.
+
+			- SIa N il numero di elementi di B (cioe la cardinalità di B, denotata anche come |B|)
+			- Result = N * this.prezzo_bid + this.prezzo
+
+
+
+Specifica della classe Utente:
+	Ogni istanza di questa classe rappresenta un utente
+		popolarità(i:DataOra): Popolarità
+
+		pre-condizioni: 
+		L'oggetto dell'invocazione ("this") deve avere valore dell'attributo "i" non minore all'attributo this.registrazione.
+
+		post-condizioni:
+		l'operazione non modifica il livello estensionale
+		Il valore di result è definito come segue:
+			- Sia A l'insieme degli oggetti u:Utente distinti che hanno effettuato bid su aste che coinvolgono "this" negli ultimi 12 mesi.
+			- Sia B l'insieme degli oggetti u2:Utente che hanno acquistato post di tipo "CompraloSubito" che coinvolgono "this" negli ultimi 12 mesi.
+			- totale = A + B (Il valore di A sommato al valore di B).
+			- La classificazione della popolarità può essere ricavata dal totale secondo:
+				se bassa; totale < 50
+				se media; 50<= totale <= 300
+				se alta; totale > 300
+
+
+	affidabilità(i: DataOra):Reale in 0..1
+
+	pre-condizioni:
+		l'oggetto di invocazione ("this") ha ricevuto almeno un feedback (positivo, neutro o negativo) compreso tra un valore numerico associato da 1 a 5. 
+		L'oggetto di invocazione "this" deve avere valore dell'attributo "i" >= dell'attributo this.registrazione
+
+	post-condizioni:
+		- L'operazione non modifica il livello estensionale
+		- Il valore del risultato ("result") è definito come segue:
+			- Sia FN l'insieme di oggetti PostconFeedback che partecipano ad un link assoc. (this, PostconFeedback): pubblica  o (this, PostconFeedback): priv_ou
+			- Sia FT l'insieme totale dei feedback che partecipano ad un link assoc. (this, PostconFeedback): pubblica  o (this, PostconFeedback): priv_ou
+			- Sia M la media aritmentica di tutti i PostconFeedback di tutti i feedback in FT.
+			- Sia Z il rapporto tra FN/FT (Media dei feedback negativi)
+			- Result = M * (1-Z)/5
+
+
+
+
