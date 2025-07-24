@@ -1,0 +1,34 @@
+Tipi di dato
+
+create domain stringa as varchar(100);
+
+create domain IntGEZ as integer
+        check (value >=0);
+
+create domain codicefiscale as char(16);
+
+create domain partitaiva as char(10);
+
+create domain telefono as char(10);
+
+create domain email as varchar(100);
+
+create domain statoordine as enum (
+        'in preparazione',  'inviato',  'da saldare',
+        'saldato');
+
+create domain real01 as real
+        check (value > 0 and value < 1);
+
+create domain realgez as real
+        check (value >= 0);
+
+create domain via as varchar(100)
+        check(value is not null);
+
+create domain civico as varchar(100)
+        check (values is not null);
+
+create type indirizzo (
+        via via,
+        civico civico);

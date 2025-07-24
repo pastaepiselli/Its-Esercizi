@@ -9,6 +9,12 @@ Specifica della Classe Asta
 		- Il valore del risultato ("result") e definito come segue:
 			- Sia this, this.scadenza <= adesso result = True, altrimenti result = False
 
+    conclusa(): Bool
+        se this.scadenza <= datetime.now():
+            return True
+        return False
+
+    old ass operazione di classe
     ultimo_bid(): Bid[0..1]
 
     precondizioni: Nessuna
@@ -18,6 +24,16 @@ Specifica della Classe Asta
              - Sia B l'insieme dei b: Bid conivolti in un link assoc. "asta_bid" tra (b, this), prendo solo i b.istante <= adesso
              - result e il bid in B con valore dell'attributo istante maggiore.
 
+    da implementare sul pitone
+    ultimo_bid(): Bid | None
+        algoritmo:
+        B = {}
+        max_b = this.asta_bid.bid[0]
+        per ogni l in this.asta_bid:
+            se l.b.istante > max_b.istante:
+                max_b = b
+    
+        return max_b
 
     vincitore(): Utente[0..1]
 
@@ -28,5 +44,10 @@ Specifica della Classe Asta
             - b = this.ultimo_bid()
             - result e p:Privato coivoloto nel link bid_ut di associazione con b.
 
-
+    vincitore(): Privato | None
+        algoritmo:
+            if this.conclusa == False:
+                return None
+            b = this.ultimo_bid()
+            return b.bid_ut.Privato
 
