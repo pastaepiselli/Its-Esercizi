@@ -17,7 +17,7 @@ create domain telefono as varchar(13)
 create domain email as varchar(100)
         check (value ~'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
 
-create domain statoordine as enum (
+create type statoordine as enum (
         'in preparazione',  'inviato',  'da saldare',
         'saldato');
 
@@ -61,14 +61,15 @@ create table regione (
 create table citta (
         -- visto che l'accorpamento senno mi diventa enorme creo un id come primary key 
         -- per rendere piu comodo la FK verso questa tabella
-        id integer primary key -- posso usare un serial
-        nome varchar not null,
-        regione varchar not null,
+        id integer primary key, -- posso usare un serial
+        nome stringa not null,
+        regione stringa not null,
+        nazione stringa not null,
         -- accorpo reg_naz e cit_reg
         foreign key (regione, nazione)
-                references regione(nome, nazione)
+                references regione(nome, nazione),
                 -- comunque le lascio come unique
-                unique (nome, regione, nazione)
+                        unique (nome, regione, nazione)
 );
 
 create table direttore (
@@ -83,7 +84,7 @@ create table direttore (
         -- accorpo dir_nasc
         citta integer not null,
         foreign key (citta)
-                references citta(id),
+                references citta(id)
 );
 
 create table fornitore (
@@ -130,7 +131,7 @@ create table ordine (
         -- accorpo fond_ord
         fornitore integer not null,
         foreign key (fornitore)
-                references fornitore(id)
+                references fornitore(id),
 
         -- accorpo dip_ord
         dipartimento stringa not null,
