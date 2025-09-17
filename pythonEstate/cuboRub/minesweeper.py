@@ -120,10 +120,6 @@ class Board:
 
         return string_rep
 
-        
-
-
-
 def play(dim = 10, num = 10):
     
     board = Board(dim, num)

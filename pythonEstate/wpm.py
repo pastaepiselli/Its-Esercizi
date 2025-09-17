@@ -7,8 +7,8 @@ import random
 def start_screen(stdscr):
     stdscr.clear() # pulisce tutto quello che ce sul terminale
     # i 2 numeri sarebbero le coordinate in cui piazziamo il testo ... tornera utile per sovrascrivere il testo verde (corretto) o rosso (sbagliato)
-    stdscr.addstr(5, 10,'Welcome to the Speed Typing Test!') # con questo aggiungo testo nel terminale, con color_pair a seconda del numero cambia la combinazione di colori
-    stdscr.addstr(6, 10,'\n Press any key to start!')
+    stdscr.addstr(0, 1,'Welcome to the Speed Typing Test!') # con questo aggiungo testo nel terminale, con color_pair a seconda del numero cambia la combinazione di colori
+    stdscr.addstr(0, 1  ,'\n Press any key to start!')
     stdscr.refresh() # poi ricarico lo schermo
     stdscr.getkey()
 
@@ -72,11 +72,7 @@ def wpm_test(stdscr):
             continue
 
         if key == '\x1b': # quando premo (esc) cureses ritorna ^[
-            break
-
-        if ord(key) == 13:
-            break
-        
+            break   
 
         if key in ('KEY_BACKSPACE', '\b', '\x7f', ): # controlla se il tasto premuto sia uguale a delete
             if len(current_text) > 0: # nel caso non sia stato scritto nienet non cancella niente
