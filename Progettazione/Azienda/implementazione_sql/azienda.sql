@@ -6,12 +6,17 @@ CREATE DOMAIN Stringa as varchar(100)
 
 CREATE DOMAIN RealGEZ as Real
         check (value >= 0);
-CREATE DOMAIN numerotelefono as varchar(16);
+CREATE DOMAIN numerotelefono as varchar(15);
+
+create domain cap as char(5)
+        check(value ~ '[0-9]{5}');
 
 create type indirizzo as (
         via Stringa,
-        civico Stringa 
+        civico Stringa,
+        cap cap not null 
 );
+
 
 -- tabelle
 
@@ -34,6 +39,7 @@ create table impiegato (
 --        stipendio RealGEZ not null,
 --        dipartimento integer,
 --        data_afferenza date,
+        -- foreign key verso dipartimento posticipata
 --        foreign key (dipartimento)
 --                references dipartimento(id),
         -- v.ennupla: (dipartimento is null) == (data_afferenza is null));
@@ -56,10 +62,10 @@ create table coinvolto (
         
 );
 
-create table telefonodip         (
+create table telefonodip (
         id integer primary key,
         telefono numerotelefono not null
-        -- v.inclusione telefono(id) occorre in tel_dip(telefono)
+        -- v.inclusione (id) occorre in tel_dip(telefono)
 );
 
 create table dipartimento (
@@ -70,6 +76,8 @@ create table dipartimento (
         -- v.inclusione dipartimento(id) occorred in tel_dip(dipartimento)
         -- v.inclusione dipartimento(id) occorre in direzione
 );
+
+-- alter table impiegato add constraint foreign key (dipartimento) references dipartimento(id); 
 
 -- potevo accorpare direzione perche 1..1
 
@@ -98,7 +106,6 @@ create table tel_dip (
 create table direzione (
         dipartimento integer primary key,
         impiegato integer not null,
-        data_afferenza date not null,
         foreign key (dipartimento)
                 references dipartimento(id),
         foreign key (impiegato)
@@ -108,7 +115,10 @@ create table direzione (
 create table afferenza (
         impiegato integer not null,
         dipartimento integer not null,
+        data_afferenza date not null,
+
         primary key (impiegato),
+
         foreign key (impiegato)   
                 references impiegato(id),
         foreign key (dipartimento)

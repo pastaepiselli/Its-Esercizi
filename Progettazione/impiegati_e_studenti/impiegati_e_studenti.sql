@@ -8,7 +8,7 @@ create domain intgez as integer
 create domain realgez as real
         check(value >= 0);
 
-create domain intgz as integer
+create domain intgz as integer -- oppure as intgez
         check(value > 0);
 
 create type tipoprogettista as enum (

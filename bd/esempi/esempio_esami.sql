@@ -1,9 +1,11 @@
 -- definizione delle tabelle
 
 -- +----------+             +----------+
--- | Studente | 0..* ------>|  Corso   	|
+-- | Studente | 0..* ------>|  Corso   |
 -- +----------+             +----------+
 --
+
+
 create table Studente (
 	matricola integer not null,
 	nome varchar(100) not null,

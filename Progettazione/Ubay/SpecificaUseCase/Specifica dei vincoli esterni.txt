@@ -49,7 +49,51 @@ Per ogni f:PostConFeedback:
 		- esiste b:Bid tale che (b,f):asta_bid
 
 
+---------
 
+Vincoli esterni introdotti in fase di ristrutturazione
+# Utente
+[V.Utente.compl]
+Per ogni u: Utente,
+esiste il link vp_isa_ut che coinvolge u oppure esiste il link pr_isa_ut che lo coinvolge.
+
+[V.Utente.disj]
+Per ogni u: Utente,
+se esiste il link vp_isa_ut che coinvolge u, allora non esiste il link pr_isa_ut che coinvolge u.
+
+# PostOggetto {OggettoUsato, OggettoNuovo}
+[V.PostOggetto.condizione.compl]
+Per ogni po: Postoggetto,
+esiste il link pon_isa_po che coinvolge po oppure esiste il link pou_isa_po	che coinvolge po.
+
+[V.PostOggetto.condizione.disj]
+Per ogni po: Postoggetto,
+se esiste il link pon_isa_po che coinvolge po, allora non esiste il link pou_isa_po che coinvolge po.
+
+# PostOggetto <- {Asta, CompraloSubito}
+[V.PostOggetto.modvendita.compl]
+Per ogni po: Postoggetto,
+esiste il link asta_isa_po che coinvolge po oppure esiste il link cs_isa_po che coinvolge po.
+
+[V.PostOggetto.modvendita.disj]
+Per ogni po: Postoggetto,
+se esiste il link asta_isa_po che coinvolge po, allora non esiste il link cs_isa_po che coinvolge po.
+
+[V.PostOggetto.Feedback]
+Per ogni po: PostOggetto,
+-po.ha_feedback = true <=> (se e solo se) esiste un valore per po.voto and esiste un valore per po.istante_feedback # caso in cui non ha il commento
+-se po.commento e valorizzato, allora po.ha_feedback = true
+
+[V.PostOggettoNuovo.pubblica.isa]
+# sostituisce la IS-A tra pubblica_nuovo e pubblica
+Per ogni pon: PostOggettoNuovo
+	-sia po: PostOggetto tale che esiste il link (pon, po): pon_isa_po
+	-sia vp: VenditoreProfessionale tale che esiste il link (pon, vp): pubblica_nuovo
+	-sia u: Utente tale che esiste il link(vp, u): vp_isa_ut
+
+deve esistere il link (u, po): pubblica
+
+[V.Categoria.]
 
 
 
