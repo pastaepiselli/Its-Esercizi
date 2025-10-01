@@ -11,6 +11,8 @@ class TaskManager:
     def complete_task(self, task_id: str) -> dict | str:
         if task_id not in self.tasks:
             return "Errore: task non trovato"
+        elif self.tasks[task_id]['compleatato']:
+            return 'Il task gia e completato'
         self.tasks[task_id]['completato'] = True
         return {task_id: self.tasks[task_id]}
     
@@ -33,11 +35,3 @@ class TaskManager:
         if task_id not in self.tasks:
             return "Errore: task non trovato"
         return self.tasks[task_id]
-
-a = []
-for i in range(10):
-    for f in range(4):
-        if f == 1:
-            break
-    else:
-        print('sono nel break')
