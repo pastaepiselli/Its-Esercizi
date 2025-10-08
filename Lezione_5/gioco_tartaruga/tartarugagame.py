@@ -91,6 +91,7 @@ while run:
     turtle.draw()
     lepre.draw()
     pygame.display.flip()
-    clock.tick(10)
+    clock.tick(11)
 
 pygame.quit()
+``
