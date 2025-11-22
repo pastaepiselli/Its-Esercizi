@@ -85,7 +85,7 @@ POST /prenotazioni {
 
 } -> 201
 
-DELETE /cliente?id=1 -> 204
+DELETE /clienti?id=1 -> 204
 
 
 5. Livelli di Maturità REST: ti vengono mostrati esempi di API. 
