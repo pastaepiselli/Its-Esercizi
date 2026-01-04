@@ -16,4 +16,3 @@ if __name__ == "__main__":
     print('Test GET /nazioni')
 
     nazioni_response = requests.get(url="http://localhost:5000/nazioni")
-    print(json.)
