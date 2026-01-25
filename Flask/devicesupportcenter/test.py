@@ -77,6 +77,7 @@ def test_delete(device_id: str):
     _show_response(response, 7)
 
 if __name__ == "__main__":
+    test_home()
     test_get_all_devices()
     test_get_device('s1')
     test_get_estimated_time_device("s1", 40.0)

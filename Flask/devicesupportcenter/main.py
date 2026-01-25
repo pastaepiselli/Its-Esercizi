@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, url_for
 from db import repair_center
 from laptop import Laptop
 from smartphone import Smartphone
@@ -10,7 +10,9 @@ app = Flask(__name__)
 def index():
     return jsonify({"message": "Welcome to Service Center API",
                     "links": {
-                        ""
+                        "list_devices": url_for('get_all_devices'),
+                        "sample_device": url_for('get_device', id="s1"),
+                        "sample_estimate": url_for('get_estimated_total_time', id="s1", factor=1.5)
                     }}), 200
 
 @app.route('/devices')
