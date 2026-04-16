@@ -10,7 +10,7 @@ class MovieCatalog:
     def getCatalog(self) -> dict[str:list[str]]:
 
         return self.catalog
-    
+     
     def add_movie(self, director_name: str, movies: list[str]):
         # check valore valido di director_name
         if not director_name:
@@ -107,22 +107,5 @@ class MovieCatalog:
 
     
 
-
-
-
-                    
-
-
-
-            
-
-
-
-            
-
-
-
-        
-            
 
 

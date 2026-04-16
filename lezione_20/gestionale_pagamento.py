@@ -9,7 +9,7 @@ class Pagamento():
 
     def getImporto(self) -> float:
         return self.__importo
-
+    
     def setImporto(self, importo: float) -> None:
         self.__importo = importo
 
